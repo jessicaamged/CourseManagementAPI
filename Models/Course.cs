@@ -5,13 +5,15 @@ namespace CourseManagementAPI.Models
     public class Course
     {
         public int Id { get; set; }
-        public string Title { get; set; }
 
-        // Foreign Key to Instructor (1-M)
+        public string Title { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+
+        // Foreign key to User who is the instructor
         public int InstructorId { get; set; }
-        public Instructor Instructor { get; set; }
+        public User? Instructor { get; set; }
 
-        // Many-to-Many: Course ↔ Student
         public List<Enrollment> Enrollments { get; set; } = new();
     }
 }

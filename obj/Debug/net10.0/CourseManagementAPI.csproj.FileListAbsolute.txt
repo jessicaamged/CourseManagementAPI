@@ -31,6 +31,8 @@ C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Microsof
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Mono.TextTemplating.dll
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Npgsql.dll
+C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -114,6 +116,7 @@ C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseMa
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.csproj.CoreCompileInputs.cache
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.sourcelink.json
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -129,6 +132,3 @@ C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\refint\C
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.pdb
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.genruntimeconfig.cache
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\ref\CourseManagementAPI.dll
-C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Npgsql.dll
-C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.sourcelink.json

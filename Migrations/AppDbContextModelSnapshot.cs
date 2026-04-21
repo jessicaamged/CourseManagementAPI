@@ -29,6 +29,10 @@ namespace CourseManagementAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("InstructorId")
                         .HasColumnType("integer");
 
@@ -45,34 +49,17 @@ namespace CourseManagementAPI.Migrations
 
             modelBuilder.Entity("CourseManagementAPI.Models.Enrollment", b =>
                 {
-                    b.Property<int>("StudentId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
-                    b.HasKey("StudentId", "CourseId");
+                    b.HasKey("UserId", "CourseId");
 
                     b.HasIndex("CourseId");
 
                     b.ToTable("Enrollments");
-                });
-
-            modelBuilder.Entity("CourseManagementAPI.Models.Instructor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("CourseManagementAPI.Models.InstructorProfile", b =>
@@ -87,18 +74,18 @@ namespace CourseManagementAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("InstructorId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("InstructorProfiles");
                 });
 
-            modelBuilder.Entity("CourseManagementAPI.Models.Student", b =>
+            modelBuilder.Entity("CourseManagementAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,21 +93,36 @@ namespace CourseManagementAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CourseManagementAPI.Models.Course", b =>
                 {
-                    b.HasOne("CourseManagementAPI.Models.Instructor", "Instructor")
-                        .WithMany("Courses")
+                    b.HasOne("CourseManagementAPI.Models.User", "Instructor")
+                        .WithMany("CoursesTeaching")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Instructor");
@@ -134,26 +136,26 @@ namespace CourseManagementAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CourseManagementAPI.Models.Student", "Student")
+                    b.HasOne("CourseManagementAPI.Models.User", "User")
                         .WithMany("Enrollments")
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Student");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CourseManagementAPI.Models.InstructorProfile", b =>
                 {
-                    b.HasOne("CourseManagementAPI.Models.Instructor", "Instructor")
-                        .WithOne("Profile")
-                        .HasForeignKey("CourseManagementAPI.Models.InstructorProfile", "InstructorId")
+                    b.HasOne("CourseManagementAPI.Models.User", "User")
+                        .WithOne("InstructorProfile")
+                        .HasForeignKey("CourseManagementAPI.Models.InstructorProfile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Instructor");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CourseManagementAPI.Models.Course", b =>
@@ -161,17 +163,13 @@ namespace CourseManagementAPI.Migrations
                     b.Navigation("Enrollments");
                 });
 
-            modelBuilder.Entity("CourseManagementAPI.Models.Instructor", b =>
+            modelBuilder.Entity("CourseManagementAPI.Models.User", b =>
                 {
-                    b.Navigation("Courses");
+                    b.Navigation("CoursesTeaching");
 
-                    b.Navigation("Profile")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CourseManagementAPI.Models.Student", b =>
-                {
                     b.Navigation("Enrollments");
+
+                    b.Navigation("InstructorProfile");
                 });
 #pragma warning restore 612, 618
         }

@@ -23,8 +23,9 @@ namespace CourseManagementAPI.Services
                 {
                     Id = c.Id,
                     Title = c.Title,
+                    Description = c.Description,
                     InstructorId = c.InstructorId,
-                    InstructorName = c.Instructor.Name
+                    InstructorName = c.Instructor != null ? c.Instructor.Name : ""
                 })
                 .ToListAsync();
         }
@@ -39,35 +40,38 @@ namespace CourseManagementAPI.Services
                 {
                     Id = c.Id,
                     Title = c.Title,
+                    Description = c.Description,
                     InstructorId = c.InstructorId,
-                    InstructorName = c.Instructor.Name
+                    InstructorName = c.Instructor != null ? c.Instructor.Name : ""
                 })
                 .FirstOrDefaultAsync();
         }
 
         public async Task<CourseReadDto?> CreateAsync(CourseCreateDto dto)
         {
-            var instructorExists = await _context.Instructors.AnyAsync(i => i.Id == dto.InstructorId);
-            if (!instructorExists)
+            var instructor = await _context.Users
+                .FirstOrDefaultAsync(u => u.Id == dto.InstructorId && u.Role == "Instructor");
+
+            if (instructor == null)
                 return null;
 
             var course = new Course
             {
                 Title = dto.Title,
+                Description = dto.Description,
                 InstructorId = dto.InstructorId
             };
 
             _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 
-            var instructor = await _context.Instructors.FindAsync(dto.InstructorId);
-
             return new CourseReadDto
             {
                 Id = course.Id,
                 Title = course.Title,
+                Description = course.Description,
                 InstructorId = course.InstructorId,
-                InstructorName = instructor!.Name
+                InstructorName = instructor.Name
             };
         }
 
@@ -77,11 +81,14 @@ namespace CourseManagementAPI.Services
             if (course == null)
                 return false;
 
-            var instructorExists = await _context.Instructors.AnyAsync(i => i.Id == dto.InstructorId);
+            var instructorExists = await _context.Users
+                .AnyAsync(u => u.Id == dto.InstructorId && u.Role == "Instructor");
+
             if (!instructorExists)
                 return false;
 
             course.Title = dto.Title;
+            course.Description = dto.Description;
             course.InstructorId = dto.InstructorId;
 
             await _context.SaveChangesAsync();

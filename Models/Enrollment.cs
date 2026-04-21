@@ -2,11 +2,10 @@ namespace CourseManagementAPI.Models
 {
     public class Enrollment
     {
-        // Composite key: StudentId + CourseId
-        public int StudentId { get; set; }
-        public Student Student { get; set; }
+        public int UserId { get; set; }
+        public User? User { get; set; }
 
         public int CourseId { get; set; }
-        public Course Course { get; set; }
+        public Course? Course { get; set; }
     }
 }

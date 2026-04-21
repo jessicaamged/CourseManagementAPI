@@ -1,11 +1,13 @@
 using CourseManagementAPI.DTOs.Enrollment;
 using CourseManagementAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseManagementAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EnrollmentsController : ControllerBase
     {
         private readonly EnrollmentService _enrollmentService;
@@ -15,6 +17,7 @@ namespace CourseManagementAPI.Controllers
             _enrollmentService = enrollmentService;
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -22,6 +25,7 @@ namespace CourseManagementAPI.Controllers
             return Ok(enrollments);
         }
 
+        [Authorize(Roles = "Student,Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(EnrollmentCreateDto dto)
         {
@@ -32,10 +36,11 @@ namespace CourseManagementAPI.Controllers
             return Ok(createdEnrollment);
         }
 
-        [HttpDelete("{studentId}/{courseId}")]
-        public async Task<IActionResult> Delete(int studentId, int courseId)
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{userId}/{courseId}")]
+        public async Task<IActionResult> Delete(int userId, int courseId)
         {
-            var deleted = await _enrollmentService.DeleteAsync(studentId, courseId);
+            var deleted = await _enrollmentService.DeleteAsync(userId, courseId);
             if (!deleted)
                 return NotFound(new { message = "Enrollment not found." });
 

@@ -106,7 +106,71 @@ POST /api/Auth/login
 
 ### Step 2: Copy Token
 
-From response:
+From response:# 📚 Course Management API
+
+## 📌 Project Overview
+
+This project is a **Course Management System API** built using **ASP.NET Core Web API (.NET 10)**.  
+It provides a backend system for managing students, instructors, courses, and enrollments.
+
+The API also includes **JWT Authentication** and **Role-Based Authorization**.
+
+---
+
+## 🚀 Technologies Used
+
+- ASP.NET Core Web API (.NET 10)
+- Entity Framework Core
+- SQLite Database
+- Swagger (OpenAPI)
+- JWT Authentication
+
+---
+
+## 📂 Features
+
+### 🔹 Core Features
+- Manage Students (CRUD)
+- Manage Instructors (with profiles)
+- Manage Courses (linked to instructors)
+- Manage Enrollments (Many-to-Many)
+
+### 🔹 Architecture
+- DTOs for clean data transfer
+- Service layer with Dependency Injection
+- Clean separation (Controller → Service → Data)
+
+### 🔹 Security
+- JWT Authentication
+- Role-Based Authorization
+
+---
+
+## 🧱 Database Design
+
+Entities:
+
+- Student
+- Instructor
+- InstructorProfile (1:1 with Instructor)
+- Course (Many-to-1 with Instructor)
+- Enrollment (Many-to-Many between Student and Course)
+
+---
+
+## 🔐 Authentication & Authorization
+
+### Login Endpoint
+
+POST /api/Auth/login
+
+### Example Request
+
+```json
+{
+  "email": "inst@test.com",
+  "password": "123"
+}
 
 ```json
 {
