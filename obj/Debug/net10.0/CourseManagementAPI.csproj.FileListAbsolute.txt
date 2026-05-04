@@ -132,3 +132,5 @@ C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\refint\C
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.pdb
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\CourseManagementAPI.genruntimeconfig.cache
 C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\obj\Debug\net10.0\ref\CourseManagementAPI.dll
+C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\course.json
+C:\Users\asus\Desktop\AES_Project\CourseManagementAPI\bin\Debug\net10.0\enrollment.json
